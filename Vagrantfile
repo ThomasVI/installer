@@ -26,10 +26,12 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.provision "shell", path: "provisioning/fetch-templates.sh", args: ["/vagrant/provisioning/roles/common/templates/config","master"]
 
-  config.vm.provision "ansible" do |ansible|
+  config.vm.provision "shell", path: "provision.sh"
+  
+  #config.vm.provision "ansible" do |ansible|
     #ansible.verbose = "vvvv"
-    #ansible.tags=["load_apps"]
-    ansible.playbook = "provisioning/smart-on-fhir-servers.yml"
-  end
+    #ansible.tags=["reset_db","load_patients"]
+    #ansible.playbook = "provisioning/smart-on-fhir-servers.yml"
+  #end
 
 end
